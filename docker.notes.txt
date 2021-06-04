@@ -1,0 +1,14 @@
+
+
+
+1. Create Dockerfile
+2. get the base image.. something like node
+3.  setup the working directory and copy whatever is needed over to docker
+4. .dockerignore file with node modules and whatever else
+5. build the image with docker build -t (name) . the period is for the current working directory
+6. run the image with something like  docker run -v ${pwd}\src:/app/src:ro -d -p 3000:3000 --name react-app react-image
+      - this is for dev and will keep the docker container in sync with the local file system with bind mounts
+      - the :ro makes it read only so the container can only read the data being sent
+7. env variables can be used with the --env-file flag and then the path name to the .env file
+8. when changing something in the docker file after the image has been created and using docker-compose you have to re run the build with docker-compose up -d --build
+9. when seperating docker files for dev/prod and need to run a docker build you have to pass the -f flag and give it the file path to the docker file as well as in the docker compose file
